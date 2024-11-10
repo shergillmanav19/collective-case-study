@@ -34,7 +34,7 @@ export default function App() {
     });
   }
 
-  const handleSend = (message: string) => {
+  function handleSend(message: string) {
     setChatData((prevChatData) => [
       ...prevChatData,
       {
@@ -63,7 +63,7 @@ export default function App() {
         setBotResponseLoading(false);
       }
     }, 2000);
-  };
+  }
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-8 pb-20 gap-4 sm:p-20 font-[family-name:var(--font-geist-sans)]">
