@@ -21,6 +21,7 @@ export default function ChatWindow({ chatData }: ChatWindowProps) {
     <div
       ref={chatContainerRef}
       className="flex flex-col gap-4 w-full h-[70vh] overflow-y-auto mb-6 md:max-w-3xl"
+      role="region"
     >
       {chatData.map((chat) => (
         <div
