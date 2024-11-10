@@ -19,15 +19,30 @@ export default function App() {
 
     // Simulate bot response
     setBotResponseLoading(true);
+    setChatData((prevChatData) => [
+      ...prevChatData,
+      {
+        id: prevChatData.length + 1,
+        message: "Typing...",
+        sender: "bot",
+      },
+    ]);
+
+    // Call API here...
+
     setTimeout(() => {
-      setChatData((prevChatData) => [
-        ...prevChatData,
-        {
+      setChatData((prevChatData) => {
+        const lastBotMessageIndex = prevChatData.length - 1;
+        const newChatData = [...prevChatData];
+        newChatData[lastBotMessageIndex] = {
           id: prevChatData.length + 1,
-          message: "Hello, I am a bot.",
+          message: "Hello! How can I help you today?",
           sender: "bot",
-        },
-      ]);
+        };
+
+        return newChatData;
+      });
+
       setBotResponseLoading(false);
     }, 2000);
   };
@@ -39,9 +54,6 @@ export default function App() {
       </h1>
       <ChatWindow chatData={chatData} />
       <div className="mt-4 flex flex-col justify-center items-center fixed bottom-8 left-0 right-0">
-        <div className="text-gray-700">
-          {botResponseLoading ? "Bot is typing..." : ""}
-        </div>
         <ChatInput
           onSend={handleSend}
           botResponseLoading={botResponseLoading}

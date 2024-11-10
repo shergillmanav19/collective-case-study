@@ -15,11 +15,12 @@ export default function ChatWindow({ chatData }: ChatWindowProps) {
           }`}
         >
           <div
-            className={`flex flex-col gap-1 px-4 py-2 max-w-xs rounded-lg ${
-              chat.sender === "user"
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200 text-black"
-            }`}
+            className={`flex flex-col gap-1 px-4 py-2 max-w-xs rounded-lg text-wrap
+              ${
+                chat.sender === "user"
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200 text-black"
+              }`}
           >
             <p>{chat.message}</p>
             {/* Display the sender */}
