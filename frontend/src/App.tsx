@@ -7,6 +7,32 @@ export default function App() {
   const [chatData, setChatData] = useState<ChatData[]>([]);
   const [botResponseLoading, setBotResponseLoading] = useState<boolean>(false);
 
+  async function fetchData(message: string): Promise<string> {
+    const response = await fetch(`${process.env.REACT_APP_BASE_API_URL}/chat`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        message: message,
+      }),
+    });
+    const data = await response.json();
+    return data.response;
+  }
+
+  // Modify the last bot message in the chat window, used for updating the bot response or showing an error message.
+  function modifyLastBotMessage(message: string) {
+    setChatData((prevChatData) => {
+      const lastBotMessageIndex = prevChatData.length - 1;
+      prevChatData[lastBotMessageIndex] = {
+        ...prevChatData[lastBotMessageIndex],
+        message: message,
+      };
+      return prevChatData;
+    });
+  }
+
   const handleSend = (message: string) => {
     setChatData((prevChatData) => [
       ...prevChatData,
@@ -16,8 +42,7 @@ export default function App() {
         sender: "user",
       },
     ]);
-
-    // Simulate bot response
+    // Let the user know that the bot is typing
     setBotResponseLoading(true);
     setChatData((prevChatData) => [
       ...prevChatData,
@@ -27,23 +52,18 @@ export default function App() {
         sender: "bot",
       },
     ]);
-
-    // Call API here...
-
-    setTimeout(() => {
-      setChatData((prevChatData) => {
-        const lastBotMessageIndex = prevChatData.length - 1;
-        const newChatData = [...prevChatData];
-        newChatData[lastBotMessageIndex] = {
-          id: prevChatData.length + 1,
-          message: "Hello! How can I help you today?",
-          sender: "bot",
-        };
-
-        return newChatData;
-      });
-
-      setBotResponseLoading(false);
+    // Call API here, simulate a delay of 2 seconds
+    setTimeout(async () => {
+      try {
+        const data = await fetchData(message);
+        // Replace the last "Typing..." message with the actual bot response
+        modifyLastBotMessage(data);
+      } catch (error) {
+        // Replace the last "Typing..." message with the generic error message
+        modifyLastBotMessage("An error occurred. Please try again.");
+      } finally {
+        setBotResponseLoading(false);
+      }
     }, 2000);
   };
 
