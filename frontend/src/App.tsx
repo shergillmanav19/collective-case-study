@@ -24,12 +24,13 @@ export default function App() {
   // Modify the last bot message in the chat window, used for updating the bot response or showing an error message.
   function modifyLastBotMessage(message: string) {
     setChatData((prevChatData) => {
-      const lastBotMessageIndex = prevChatData.length - 1;
-      prevChatData[lastBotMessageIndex] = {
-        ...prevChatData[lastBotMessageIndex],
+      const newChatData = [...prevChatData];
+      const lastBotMessageIndex = newChatData.length - 1;
+      newChatData[lastBotMessageIndex] = {
+        ...newChatData[lastBotMessageIndex],
         message: message,
       };
-      return prevChatData;
+      return newChatData;
     });
   }
 
@@ -41,11 +42,7 @@ export default function App() {
         message: message,
         sender: "user",
       },
-    ]);
-    // Let the user know that the bot is typing
-    setBotResponseLoading(true);
-    setChatData((prevChatData) => [
-      ...prevChatData,
+      // Let the user know that the bot is typing
       {
         id: prevChatData.length + 1,
         message: "Typing...",
@@ -53,6 +50,7 @@ export default function App() {
       },
     ]);
     // Call API here, simulate a delay of 2 seconds
+    setBotResponseLoading(true);
     setTimeout(async () => {
       try {
         const data = await fetchData(message);
