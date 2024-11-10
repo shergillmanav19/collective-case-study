@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import ChatData from "../types/ChatData";
 
 type ChatWindowProps = {
@@ -5,8 +6,22 @@ type ChatWindowProps = {
 };
 
 export default function ChatWindow({ chatData }: ChatWindowProps) {
+  const chatContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTo({
+        top: chatContainerRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  }, [chatData]);
+
   return (
-    <div className="flex flex-col gap-4 w-full h-[70vh] overflow-y-auto mb-6 md:max-w-3xl">
+    <div
+      ref={chatContainerRef}
+      className="flex flex-col gap-4 w-full h-[70vh] overflow-y-auto mb-6 md:max-w-3xl"
+    >
       {chatData.map((chat) => (
         <div
           key={chat.id}
