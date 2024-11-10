@@ -36,7 +36,7 @@ export default function ChatInput({
       <button
         type="submit"
         className="p-2 ml-4 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600 disabled:opacity-50"
-        disabled={botResponseLoading}
+        disabled={botResponseLoading || message.trim() === ""}
       >
         Send
       </button>
