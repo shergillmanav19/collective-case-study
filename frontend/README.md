@@ -25,3 +25,12 @@ You will also see any lint errors in the console.
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+
+## What this project is about?
+
+This project is about a chat bot that gives pre-defined responses to users.
+
+We have 2 components, chat window which displays the chat history, and chat input which lets the users type a message and send it to the backend.
+
+Some things i have kept in mind while developing were testing, usability, accessibility, semantic HTML, and style :)
