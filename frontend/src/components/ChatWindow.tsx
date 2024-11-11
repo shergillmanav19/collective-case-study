@@ -21,35 +21,38 @@ export default function ChatWindow({ chatData }: ChatWindowProps) {
     <div
       ref={chatContainerRef}
       className="flex flex-col gap-4 w-full h-[70vh] overflow-y-auto mb-6 md:max-w-3xl"
-      role="region"
-      aria-label="Chat Window"
+      role="log"
+      aria-live="polite"
+      aria-relevant="additions"
     >
-      {chatData.map((chat, index) => (
-        <div
-          key={`${chat.id}_${index}}`}
-          className={`flex ${
-            chat.sender === "user" ? "justify-end" : "justify-start"
-          }`}
-          role="listitem"
-        >
+      <div role="list">
+        {chatData.map((chat, index) => (
           <div
-            className={`flex flex-col gap-1 px-4 py-2 max-w-xs rounded-lg text-wrap
+            key={`${chat.id}_${index}}`}
+            className={`flex ${
+              chat.sender === "user" ? "justify-end" : "justify-start"
+            }`}
+            role="listitem"
+          >
+            <div
+              className={`flex flex-col gap-1 px-4 py-2 max-w-xs rounded-lg text-wrap
               ${
                 chat.sender === "user"
                   ? "bg-blue-500 text-white"
                   : "bg-gray-200 text-black"
               }`}
-          >
-            <p aria-label={chat.message}>{chat.message}</p>
-            {/* Display the sender */}
-            {chat.sender === "user" ? (
-              <small className="text-slate-200">You</small>
-            ) : (
-              <small className="text-gray-400">Bot</small>
-            )}
+            >
+              <p aria-label={chat.message}>{chat.message}</p>
+              {/* Display the sender */}
+              {chat.sender === "user" ? (
+                <small className="text-slate-200">You</small>
+              ) : (
+                <small className="text-gray-400">Bot</small>
+              )}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
