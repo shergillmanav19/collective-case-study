@@ -44,12 +44,12 @@ export default function App() {
       },
       // Let the user know that the bot is typing
       {
-        id: prevChatData.length + 1,
+        id: prevChatData.length + 2,
         message: "Typing...",
         sender: "bot",
       },
     ]);
-    // Call API here, simulate a delay of 2 seconds
+    // Call API here, simulate a delay of 1 second
     setBotResponseLoading(true);
     setTimeout(async () => {
       try {
