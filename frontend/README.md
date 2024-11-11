@@ -4,7 +4,11 @@ This project is about a chat bot that gives pre-defined responses to users.
 
 We have 2 components, chat window which displays the chat history, and chat input which lets the users type a message and send it to the backend.
 
-Some things i have kept in mind while developing were testing, usability, accessibility, semantic HTML, and style :)
+Some things i have kept in mind while developing were testing, usability, and accessibility :)
+
+Testing - Created unit tests for components
+Usability - Kept simple and intuitive design
+Accessibility - Used semantic HTML and correct ARIA tags.
 
 ## How to run the project
 
