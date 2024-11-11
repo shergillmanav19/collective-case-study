@@ -66,7 +66,10 @@ export default function App() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-8 pb-20 gap-4 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div
+      className="flex flex-col items-center justify-center min-h-screen p-8 pb-20 gap-4 sm:p-20 font-[family-name:var(--font-geist-sans)]"
+      role="main"
+    >
       <h1 className="text-2xl font-bold text-center text-blue-400">
         Collective[i] Case Study By Manav
       </h1>
