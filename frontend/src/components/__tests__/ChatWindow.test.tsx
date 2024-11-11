@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import ChatWindow from "./ChatWindow";
-import ChatData from "../types/ChatData";
+import ChatWindow from "../ChatWindow";
+import ChatData from "../../types/ChatData";
 
 describe("ChatWindow Component", () => {
   const mockChatData: ChatData[] = [

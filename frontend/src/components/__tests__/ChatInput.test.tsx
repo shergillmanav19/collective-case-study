@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import ChatInput from "./ChatInput";
+import ChatInput from "../ChatInput";
 
 // Mock function for onSend
 const mockOnSend = jest.fn();

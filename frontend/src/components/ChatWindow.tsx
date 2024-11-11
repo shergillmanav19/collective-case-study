@@ -24,9 +24,9 @@ export default function ChatWindow({ chatData }: ChatWindowProps) {
       role="region"
       aria-label="Chat Window"
     >
-      {chatData.map((chat) => (
+      {chatData.map((chat, index) => (
         <div
-          key={chat.id}
+          key={`${chat.id}_${index}}`}
           className={`flex ${
             chat.sender === "user" ? "justify-end" : "justify-start"
           }`}
