@@ -33,6 +33,7 @@ export default function ChatWindow({ chatData }: ChatWindowProps) {
               chat.sender === "user" ? "justify-end" : "justify-start"
             }`}
             role="listitem"
+            tabIndex={0}
           >
             <div
               className={`flex flex-col gap-1 px-4 py-2 max-w-xs rounded-lg text-wrap
